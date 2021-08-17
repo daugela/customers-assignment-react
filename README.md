@@ -1,3 +1,11 @@
+## Minimal customer ~database app with React and persistent local storage
+
+Build env:
+- Node v15.11.0
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
