@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect
+} from 'react-router-dom';
+import { Customers, Error404 } from './pages';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './helpers';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <React.StrictMode>
+                    <Router>
+                        <Switch>
+
+                            <Route exact path="/">
+                                <Redirect to="/customers" />
+                            </Route>
+
+                            <Route exact path="/customers" component={Customers} />
+                            <Route exact path="/customers/:customerUNID" component={Error404} />
+                            <Route exact path="/500" component={Error404} />
+                            <Route component={Error404} />
+
+                        </Switch>
+                    </Router>
+                </React.StrictMode>
+            </PersistGate>
+        </Provider>
+    );
 }
 
 export default App;

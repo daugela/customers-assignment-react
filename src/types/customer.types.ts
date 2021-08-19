@@ -7,5 +7,5 @@ export interface SingleCustomer {
 }
 
 export interface CustomersData {
-    [unid: string]: SingleCustomer
+    [index: string]: SingleCustomer
 }
