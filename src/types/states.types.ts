@@ -1,12 +1,12 @@
-import { CustomersData } from '.'
+import { CustomersData } from '.';
 
 export interface CustomersDataState {
-    customers: CustomersData
+    customers: CustomersData;
 }
 export interface ModalsState {
-    addCustomerModal: boolean
+    addCustomerModal: boolean;
 }
 export interface GlobalReduxState {
-    customersDataReducer: CustomersDataState,
-    modalsReducer: ModalsState
+    customersDataReducer: CustomersDataState;
+    modalsReducer: ModalsState;
 }

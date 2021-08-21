@@ -1,4 +1,4 @@
-import { SingleCustomer } from '.'
+import { SingleCustomer } from '.';
 
 export const CUSTOMER_ADD = 'CUSTOMER_ADD';
 export const CUSTOMER_EDIT = 'CUSTOMER_EDIT';
@@ -12,24 +12,24 @@ export const ADD_CUSTOMER_MODAL_CLOSE = 'ADD_CUSTOMER_MODAL_CLOSE';
 export const ADD_CUSTOMER_MODAL_OPEN = 'ADD_CUSTOMER_MODAL_OPEN';
 
 export interface CustomerAddAction {
-    type: typeof CUSTOMER_ADD,
-    payload: any
+    type: typeof CUSTOMER_ADD;
+    payload: any;
 }
 
 export interface CustomerEditAction {
-    type: typeof CUSTOMER_EDIT,
-    payload: any
+    type: typeof CUSTOMER_EDIT;
+    payload: any;
 }
 
 export interface CustomerRemoveAction {
-    type: typeof CUSTOMER_REMOVE
+    type: typeof CUSTOMER_REMOVE;
     //payload: { customer: SingleCustomer }
 }
 
 export interface AddCustomerModalOpenAction {
-    type: typeof ADD_CUSTOMER_MODAL_OPEN
+    type: typeof ADD_CUSTOMER_MODAL_OPEN;
 }
 
 export interface AddCustomerModalCloseAction {
-    type: typeof ADD_CUSTOMER_MODAL_CLOSE
+    type: typeof ADD_CUSTOMER_MODAL_CLOSE;
 }

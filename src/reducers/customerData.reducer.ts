@@ -6,44 +6,40 @@ import {
     CustomerRemoveAction,
     CUSTOMER_ADD,
     CUSTOMER_EDIT,
-    CUSTOMER_REMOVE
+    CUSTOMER_REMOVE,
 } from '../types';
 
-const initialState: CustomersDataState = { customers: {}}
+const initialState: CustomersDataState = { customers: {} };
 
 const customerDataReducer = (
     state = initialState,
-    action: CustomerAddAction | CustomerEditAction | CustomerRemoveAction
+    action: CustomerAddAction | CustomerEditAction | CustomerRemoveAction,
 ) => {
     switch (action.type) {
-
         case CUSTOMER_ADD:
-
             return {
                 ...state,
                 customers: {
                     ...state.customers,
-                    [uuidv4()]: action.payload.customer
-                }
+                    [uuidv4()]: action.payload.customer,
+                },
             };
 
         case CUSTOMER_EDIT:
-
             return {
                 ...state,
                 customers: {
                     ...state.customers,
-                    [uuidv4()]: action.payload.customer
-                }
+                    [uuidv4()]: action.payload.customer,
+                },
             };
 
         case CUSTOMER_REMOVE:
-
             return {
                 ...state,
                 customers: {
-                    ...state.customers
-                }
+                    ...state.customers,
+                },
             };
 
         default:
