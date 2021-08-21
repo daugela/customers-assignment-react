@@ -1,6 +1,10 @@
-@import '_modal.scss';
 @import '_variables.scss';
+@import '_modal.scss';
+@import '_input.scss';
+@import '_typography.scss';
+
 
 html {
     overflow-y: scroll;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

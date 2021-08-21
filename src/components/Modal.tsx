@@ -1,31 +1,25 @@
-import React from 'react';
-import { Input } from '.';
-
+import React, { useRef } from 'react';
+import { useOutsideAlerter } from '../hooks';
 interface ModalProps {
-  active: boolean;
-  closeHandler: () => void;
+    active: boolean;
+    closeHandler: () => void;
+    children: React.ReactNode;
 }
 
-export const Modal = (props: ModalProps) => {
+export const Modal: React.FC<ModalProps> = ({ active, closeHandler, children }) => {
+    const modalContentRef = useRef<HTMLDivElement | null>(null);
+    useOutsideAlerter(modalContentRef, () => closeHandler());
 
-    const { active, closeHandler } = props;
-    
     if (!active) return null;
 
     return (
         <div id="myModal" className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => closeHandler()}>&times;</span>
-            <form>
-              <Input id='fullname' type='text' placeholder='Full name' handleChange={() => {}}/>
-              <Input id='email' type='email' placeholder='Email address' handleChange={() => {}}/>
-
-              <Input id='city' type='text'  placeholder='City' handleChange={() => {}}/>
-              <Input id='street' type='text' placeholder='Street name' handleChange={() => {}}/>
-              <Input id='house' type='number' placeholder='House number' handleChange={() => {}}/>
-              <Input id='zip' type='number' placeholder='ZIP number' handleChange={() => {}}/>
-            </form>
-          </div>
-      </div>
-    )
+            <div className="modal-content" ref={modalContentRef}>
+                <span className="close" onClick={() => closeHandler()}>
+                    &times;
+                </span>
+                {children}
+            </div>
+        </div>
+    );
 };

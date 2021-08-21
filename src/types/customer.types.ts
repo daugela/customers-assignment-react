@@ -3,7 +3,8 @@ import { Address } from '.';
 export interface SingleCustomer {
     fullName: string,
     email: string,
-    address: Address
+    address: Address,
+unid: string
 }
 
 export interface CustomersData {
