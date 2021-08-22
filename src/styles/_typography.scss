@@ -2,5 +2,13 @@
     display: block;
     margin: 1.1rem 0;
     font-size: 1.4rem;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid $special-red;
+}
+
+.error {
+    color: $special-red;
+}
+
+.link {
+    color: $special-blue;
 }

@@ -1,18 +1,25 @@
 import React from 'react';
-import { Input } from '.';
+import { Button, Input } from '.';
 
 interface CustomerFormProps {
     updateHandler: (event: any) => void;
+    submitHandler: () => void;
     [field: string]: any;
 }
-export const CustomerForm: React.FC<CustomerFormProps> = ({ updateHandler, fullName, email, ...rest }) => {
-    const submitForm = (e: any) => {
+export const CustomerForm: React.FC<CustomerFormProps> = ({
+    updateHandler,
+    submitHandler,
+    fullName,
+    email,
+    ...rest
+}) => {
+    const handleDefaultForm = (e: any) => {
         e.preventDefault();
     };
 
     return (
         <>
-            <form onSubmit={submitForm} autoComplete="false">
+            <form onSubmit={handleDefaultForm} autoComplete="false">
                 <span className="title">Customer</span>
                 <Input
                     id="fullName"
@@ -51,7 +58,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({ updateHandler, fullN
                     value={rest.zip}
                     label="Zip code"
                 />
-                <button style={{ marginTop: '1.2rem' }}>Save</button>
+                <Button title="Save" clickHandler={submitHandler} />
             </form>
         </>
     );

@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { FETCH_COORDS_START, FETCH_COORDS_SUCCESS, FETCH_COORDS_ERROR } from '../types';
+import {
+    FETCH_COORDS_START,
+    FETCH_COORDS_SUCCESS,
+    FETCH_COORDS_ERROR,
+    SingleCustomer,
+    CUSTOMER_SAVE,
+    ADD_CUSTOMER_MODAL_CLOSE,
+    CUSTOMER_REMOVE,
+} from '../types';
 
 const fetchCoordsByAddress = (address: string) => {
     const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY ? process.env.REACT_APP_GOOGLE_API_KEY : 'YOUR_API_KEY';
@@ -37,4 +45,17 @@ const fetchCoordsByAddress = (address: string) => {
     };
 };
 
-export const addressActions = { fetchCoordsByAddress };
+const saveCustomer = (customer: SingleCustomer) => {
+    return (dispatch: any) => {
+        dispatch({ type: CUSTOMER_SAVE, payload: { customer } });
+        dispatch({ type: ADD_CUSTOMER_MODAL_CLOSE });
+    };
+};
+
+const deleteCustomer = (unid: string) => {
+    return (dispatch: any) => {
+        dispatch({ type: CUSTOMER_REMOVE, payload: { unid } });
+    };
+};
+
+export const customersActions = { saveCustomer, deleteCustomer, fetchCoordsByAddress };

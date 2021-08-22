@@ -4,7 +4,7 @@ export interface SingleCustomer {
     fullName: string;
     email: string;
     address: Address;
-    unid: string;
+    unid: string | undefined;
 }
 
 export interface CustomersData {

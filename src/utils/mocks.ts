@@ -26,5 +26,5 @@ export const customerMock: SingleCustomer = {
     fullName: '',
     email: '',
     address: customerAddressMock,
-    unid: '00000000-aaaa-bbbb-cccc-000000000000',
+    unid: undefined,
 };

@@ -1,45 +1,28 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-    CustomersDataState,
-    CustomerAddAction,
-    CustomerEditAction,
-    CustomerRemoveAction,
-    CUSTOMER_ADD,
-    CUSTOMER_EDIT,
-    CUSTOMER_REMOVE,
-} from '../types';
+import { CustomersDataState, CustomerSaveAction, CustomerRemoveAction, CUSTOMER_SAVE, CUSTOMER_REMOVE, CustomersData } from '../types';
 
 const initialState: CustomersDataState = { customers: {} };
 
-const customerDataReducer = (
-    state = initialState,
-    action: CustomerAddAction | CustomerEditAction | CustomerRemoveAction,
-) => {
+const customerDataReducer = (state = initialState, action: CustomerSaveAction | CustomerRemoveAction) => {
     switch (action.type) {
-        case CUSTOMER_ADD:
-            return {
-                ...state,
-                customers: {
-                    ...state.customers,
-                    [uuidv4()]: action.payload.customer,
-                },
-            };
+        case CUSTOMER_SAVE:
+            const unid = action.payload.customer.unid ? action.payload.customer.unid : uuidv4();
 
-        case CUSTOMER_EDIT:
             return {
                 ...state,
                 customers: {
                     ...state.customers,
-                    [uuidv4()]: action.payload.customer,
+                    [unid]: { ...action.payload.customer, unid },
                 },
             };
 
         case CUSTOMER_REMOVE:
             return {
                 ...state,
-                customers: {
-                    ...state.customers,
-                },
+                customers: Object.keys(state.customers).reduce((updatedCustomers: CustomersData, key) => {
+                    if (key !== action.payload.unid) updatedCustomers[key] = state.customers[key];
+                    return updatedCustomers;
+                }, {}),
             };
 
         default:
