@@ -26,3 +26,16 @@ export interface AddCustomerModalOpenAction {
 export interface AddCustomerModalCloseAction {
     type: typeof ADD_CUSTOMER_MODAL_CLOSE;
 }
+
+export interface FetchCoordsStartAction {
+    type: typeof FETCH_COORDS_START;
+}
+
+export interface FetchCoordsErrorAction {
+    type: typeof FETCH_COORDS_ERROR;
+    payload: { error: string };
+}
+
+export interface FetchCoordsSuccessAction {
+    type: typeof FETCH_COORDS_SUCCESS;
+}

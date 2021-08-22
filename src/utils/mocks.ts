@@ -10,8 +10,8 @@ export const mockGlobalReduxState = (): GlobalReduxState => ({
 });
 
 export const coordsMock = {
-    latitude: 0.0,
-    longitude: 0.0,
+    lat: 0.0,
+    lng: 0.0,
 };
 
 export const customerAddressMock: Address = {

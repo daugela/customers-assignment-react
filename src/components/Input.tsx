@@ -10,22 +10,23 @@ interface InputProps {
 }
 
 export const Input: React.FC<InputProps> = ({ id, label, value, placeholder, error, handleChange }) => {
-    const err = error ? 'is-invalid' : '';
-    const classes = `form-control ${err}`;
+    const classes = error ? 'input invalid' : 'input';
 
     return (
-        <div className="input-wrapper">
-            {label && <label htmlFor="email">{label}</label>}
-            <input
-                id={id}
-                type="text"
-                className={classes}
-                placeholder={placeholder}
-                onChange={e => handleChange(e.target)}
-                autoComplete="none"
-                value={value}
-            />
-            {error ? <div className="invalid-value">{error}</div> : ''}
-        </div>
+        <>
+            <div className="input-wrapper">
+                {label && <label htmlFor="email">{label}</label>}
+                <input
+                    id={id}
+                    type="text"
+                    className={classes}
+                    placeholder={placeholder}
+                    onChange={e => handleChange(e.target)}
+                    autoComplete="none"
+                    value={value}
+                />
+            </div>
+            {error && <div className="error-message">{error}</div>}
+        </>
     );
 };

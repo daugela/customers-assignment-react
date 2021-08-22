@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import {
     FETCH_COORDS_START,
     FETCH_COORDS_SUCCESS,
@@ -9,32 +10,41 @@ import {
     CUSTOMER_REMOVE,
 } from '../types';
 
-const fetchCoordsByAddress = (address: string) => {
+const saveCustomer = (customer: SingleCustomer) => {
     const googleApiKey = process.env.REACT_APP_GOOGLE_API_KEY ? process.env.REACT_APP_GOOGLE_API_KEY : 'YOUR_API_KEY';
+    // Quite dirty here - just construct query from passed address
+    // As example in Google docs is '1600+Amphitheatre+Parkway,+Mountain+View,+CA'
+    const locationQuery = `${customer.address.street}+${customer.address.house},+${customer.address.city},+${customer.address.zip}`;
 
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch) => {
         try {
             dispatch({ type: FETCH_COORDS_START });
 
-            // const fetchCoordsQuery = {
-            //     email: username,
-            //     password: password,
-            //     projectId: projectId
-            // } as LoginRequest
+            const response = await axios.get(`/api/geocode/json?address=${locationQuery}&key=${googleApiKey}`);
 
-            //const response = await axios.post(`/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${googleApiKey}`); //, loginQuery);
-            const response = await axios.post(
-                `/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyA5t-Tzbxos16xJy5BxinKYLtWxG6Wsdig`,
-            ); //, loginQuery);
+            // Log the response data from Google
+            console.log(response.data);
 
-            if (response.status === 200) {
-                setTimeout(() => {
-                    dispatch({ type: FETCH_COORDS_SUCCESS, payload: { ...response.data } });
-                }, 900);
+            // Check Google response content as save customer
+            if (response.status === 200 && response.statusText === 'OK') {
+                dispatch({ type: FETCH_COORDS_SUCCESS });
+
+                dispatch({
+                    type: CUSTOMER_SAVE,
+                    payload: {
+                        customer: {
+                            ...customer,
+                            address: { ...customer.address, coords: response.data.results[0].geometry.location },
+                        },
+                    },
+                });
+                dispatch({ type: ADD_CUSTOMER_MODAL_CLOSE });
             } else {
-                dispatch({ type: FETCH_COORDS_ERROR, payload: { message: 'Error occurred!' } });
+                dispatch({
+                    type: FETCH_COORDS_ERROR,
+                    payload: { message: 'Was not able to fetch coords. Please try again.' },
+                });
             }
-            //console.error(response);
         } catch (error) {
             dispatch({
                 type: FETCH_COORDS_ERROR,
@@ -45,17 +55,10 @@ const fetchCoordsByAddress = (address: string) => {
     };
 };
 
-const saveCustomer = (customer: SingleCustomer) => {
-    return (dispatch: any) => {
-        dispatch({ type: CUSTOMER_SAVE, payload: { customer } });
-        dispatch({ type: ADD_CUSTOMER_MODAL_CLOSE });
-    };
-};
-
 const deleteCustomer = (unid: string) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         dispatch({ type: CUSTOMER_REMOVE, payload: { unid } });
     };
 };
 
-export const customersActions = { saveCustomer, deleteCustomer, fetchCoordsByAddress };
+export const customersActions = { saveCustomer, deleteCustomer };

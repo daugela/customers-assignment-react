@@ -5,6 +5,7 @@ export interface CustomersDataState {
 }
 export interface ModalsState {
     addCustomerModal: boolean;
+    error: string;
 }
 export interface GlobalReduxState {
     customersDataReducer: CustomersDataState;

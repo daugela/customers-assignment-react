@@ -57,12 +57,6 @@ export const Customers: React.FC = () => {
 
                 <Button clickHandler={openModal} title="Create new customer" />
 
-                {Object.keys.length > 0 && (
-                    <span style={{ fontSize: '16px', lineHeight: '24px' }}>
-                        You do not have any customers yet. Use "Create customer" to add one
-                    </span>
-                )}
-
                 <ul className="customer-list">
                     {Object.keys(customers).map((unid: string) => (
                         <li key={unid} className="customer-list--item">
@@ -70,8 +64,8 @@ export const Customers: React.FC = () => {
                             <a href={`mailto:${customers[unid].email}`} className="link">
                                 {customers[unid].email}
                             </a>
-                            <Button title="Edit" clickHandler={() => editCustomerData(unid)} />
-                            <Button title="Delete" clickHandler={() => deleteCustomerData(unid)} />
+                            <Button title="Edit" outline clickHandler={() => editCustomerData(unid)} />
+                            <Button title="Delete" outline clickHandler={() => deleteCustomerData(unid)} />
                         </li>
                     ))}
                 </ul>

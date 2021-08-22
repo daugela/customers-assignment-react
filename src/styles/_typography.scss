@@ -2,7 +2,7 @@
     display: block;
     margin: 1.1rem 0;
     font-size: 1.4rem;
-    border-bottom: 1px solid $special-red;
+    border-bottom: 1px solid $special-black;
 }
 
 .error {
@@ -11,4 +11,5 @@
 
 .link {
     color: $special-blue;
+    margin-right: 1rem;
 }
