@@ -8,7 +8,7 @@ import {
     CustomersData,
 } from '../types';
 
-const initialState: CustomersDataState = { customers: {} };
+export const initialState: CustomersDataState = { customers: {} };
 
 const customerDataReducer = (state = initialState, action: CustomerSaveAction | CustomerRemoveAction) => {
     switch (action.type) {

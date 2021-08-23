@@ -12,7 +12,7 @@ import {
     FETCH_COORDS_SUCCESS,
 } from '../types';
 
-const initialState: ModalsState = { addCustomerModal: false, error: '' };
+export const initialState: ModalsState = { addCustomerModal: false, error: '' };
 
 const modalsReducer = (
     state = initialState,

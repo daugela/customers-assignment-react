@@ -1,12 +1,17 @@
 import { Address, CustomersDataState, GlobalReduxState, ModalsState, SingleCustomer } from '../types';
+import { initialState as initialCustomerState } from '../reducers/customerData.reducer';
+import { initialState as initialModalsState } from '../reducers/modals.reducer';
+export interface MockGlobalStateArgs {
+    customersDataReducer?: CustomersDataState;
+    modalsReducer?: ModalsState;
+}
 
-export const mockGlobalReduxState = (): GlobalReduxState => ({
-    customersDataReducer: {
-        customers: {},
-    } as CustomersDataState,
-    modalsReducer: {
-        addCustomerModal: false,
-    } as ModalsState,
+export const mockGlobalReduxState = ({
+    customersDataReducer = initialCustomerState,
+    modalsReducer = initialModalsState,
+}: MockGlobalStateArgs): GlobalReduxState => ({
+    customersDataReducer: customersDataReducer,
+    modalsReducer: modalsReducer,
 });
 
 export const coordsMock = {

@@ -39,3 +39,5 @@ export interface FetchCoordsErrorAction {
 export interface FetchCoordsSuccessAction {
     type: typeof FETCH_COORDS_SUCCESS;
 }
+
+export type AllResolvedCustomerActions = CustomerSaveAction | CustomerRemoveAction;

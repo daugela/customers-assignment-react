@@ -1,9 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { mount } from 'enzyme';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Test some basic render aspects of the App UI', () => {
+    it('should render Customers page with expected h1 tag and button', () => {
+        const page = mount(<App />);
+
+        const h1 = page.find('h1');
+        expect(h1.text()).toBe('My awesome customer database');
+
+        const button = page.find('button');
+        expect(button.text()).toBe('Create new customer');
+    });
 });
