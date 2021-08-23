@@ -53,19 +53,21 @@ export const Customers: React.FC = () => {
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100vh' }}>
-                <h1 className="display--2">My awesome customer database</h1>
+                <h1>My awesome customer database</h1>
 
                 <Button clickHandler={openModal} title="Create new customer" />
 
                 <ul className="customer-list">
                     {Object.keys(customers).map((unid: string) => (
-                        <li key={unid} className="customer-list--item">
-                            {customers[unid].fullName} -{' '}
+                        <li key={unid} className="customer-list__item">
+                            <span>{customers[unid].fullName}</span>
                             <a href={`mailto:${customers[unid].email}`} className="link">
                                 {customers[unid].email}
                             </a>
-                            <Button title="Edit" outline clickHandler={() => editCustomerData(unid)} />
-                            <Button title="Delete" outline clickHandler={() => deleteCustomerData(unid)} />
+                            <div className="customer-list__item__tools">
+                                <Button title="Edit" outline clickHandler={() => editCustomerData(unid)} />
+                                <Button title="Delete" outline clickHandler={() => deleteCustomerData(unid)} />
+                            </div>
                         </li>
                     ))}
                 </ul>

@@ -2,6 +2,23 @@
     width: 500px;
     list-style: none;
 
-    &--item {
+    &__item {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        &__tools {
+            opacity: 0;
+        }
+
+        &:hover &__tools {
+            opacity: 1;
+            animation: fadeIn 0.1s;
+            -webkit-animation: fadeIn 0.1s;
+            -moz-animation: fadeIn 0.1s;
+            -o-animation: fadeIn 0.1s;
+            -ms-animation: fadeIn 0.1s;
+        }
     }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { stringify } from 'uuid';
 import { Button, Input } from '.';
 import { GlobalReduxState } from '../types';
 
@@ -34,7 +33,7 @@ export const CustomerForm: React.FC<CustomerFormProps> = ({
         if (!/^([\wąčęėįšųūž]{3,})+\s+([\wąčęėįšųūž\s]{3,})+$/i.test(fullName))
             messages.fullName = 'Full name should me a first name and second name';
         if (!/^([A-Za-ząčęėįšųūž\s-]{3,})+$/i.test(rest.city)) messages.city = 'Please enter a valid city name';
-        if (!/^([A-Za-ząčęėįšųūž\s-]{3,})+$/i.test(rest.street)) messages.street = 'Please enter a valid street name';
+        if (!/^([A-Za-ząčęėįšųūž\s-.]{3,})+$/i.test(rest.street)) messages.street = 'Please enter a valid street name';
         if (!/^([0-9]{1,6})+$/.test(rest.house)) messages.house = 'Please enter a valid house number';
         if (!/^([0-9]{3,6})+$/.test(rest.zip)) messages.zip = 'ZIP code is expected to be 3-6 numbers';
         if (!Object.values(messages).some((message: string) => message.length > 0)) {

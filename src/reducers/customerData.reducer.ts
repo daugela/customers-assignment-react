@@ -1,5 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { CustomersDataState, CustomerSaveAction, CustomerRemoveAction, CUSTOMER_SAVE, CUSTOMER_REMOVE, CustomersData } from '../types';
+import {
+    CustomersDataState,
+    CustomerSaveAction,
+    CustomerRemoveAction,
+    CUSTOMER_SAVE,
+    CUSTOMER_REMOVE,
+    CustomersData,
+} from '../types';
 
 const initialState: CustomersDataState = { customers: {} };
 
